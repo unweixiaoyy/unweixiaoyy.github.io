@@ -497,9 +497,8 @@
 <h3 id="Intent-FLAG-ACTIVITY-CLEAR-TOP"><a href="#Intent-FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="Intent.FLAG_ACTIVITY_CLEAR_TOP"></a>Intent.<strong>FLAG_ACTIVITY_CLEAR_TOP</strong></h3><blockquote>
 <p>FLAG_ACTIVITY_CLEAR_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找</p>
 <p>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_SINGLE_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后回调onNewIntent方法。只会在当前启动目标Activity的栈中寻找<br><em>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK  如ActivityTarget所在的栈存在并找到ActivityTarget实例，则清除ActivityTarget上面所有Activity，把ActivityTarget栈移动栈顶，然后先finish自己再重建。
-</em>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP    如果当前启动栈的TopActivity不是ActivityTarget，则同#FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK ！！！</p>
+</em>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP    如果当前启动栈的TopActivity不是ActivityTarget，则同#FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK ！！！<br>*FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP 如果当前启动栈的TopActivity是ActivityTarget，就直接回调topActivity的onNewIntent，无论topActivity是不是在目标Task中。 </p>
 </blockquote>
-<p>*FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP 如果当前启动栈的TopActivity是ActivityTarget，就直接回调topActivity的onNewIntent，无论topActivity是不是在目标Task中。</p>
 <h3 id="Intent-FLAG-ACTIVITY-SINGLE-TOP"><a href="#Intent-FLAG-ACTIVITY-SINGLE-TOP" class="headerlink" title="Intent.FLAG_ACTIVITY_SINGLE_TOP"></a>Intent.<strong>FLAG_ACTIVITY_SINGLE_TOP</strong></h3><blockquote>
 <p>跟LaunchMode中的singleTop作用一样，在Task栈顶有的话，就不新建，栈顶没有的话，就新建，这里的Task可能是目标栈。</p>
 </blockquote>
@@ -510,7 +509,7 @@
 <h3 id="5-0版本以后系统做的处理："><a href="#5-0版本以后系统做的处理：" class="headerlink" title="5.0版本以后系统做的处理："></a>5.0版本以后系统做的处理：</h3><blockquote>
 <p>5.0之后这个方法做了修改，修改之后即便启动的页面设置launchMode为singleTask或singleInstance，onActivityResult依旧可以正常工作，也就是说无论设置哪种启动方式，StartActivityForResult和onActivityResult()这一组合都是有效的图示：</p>
 </blockquote>
-<h3 id="非Activity启动的Activity"><a href="#非Activity启动的Activity" class="headerlink" title="非Activity启动的Activity"></a><strong>非Activity启动的Activity</strong></h3><blockquote>
+<h2 id="非Activity启动的Activity"><a href="#非Activity启动的Activity" class="headerlink" title="非Activity启动的Activity"></a><strong>非Activity启动的Activity</strong></h2><blockquote>
 <p>启动时必须加上intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);因为Activity必须要存在于某个栈中，非Activity启动(如Application和Service)是没有栈的所以需要加上NewTask的Flag。  </p>
 </blockquote>
 <p><br></p>
