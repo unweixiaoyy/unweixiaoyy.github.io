@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="随心, Android, 经验分享" />
+  <meta name="keywords" content="系统组件,面试," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="launchModestandard 默认启动模式，每次启动都会生成一个新的实例  singleTop 如果调用者的栈中存在相同的Activity实例，并且在栈顶，则回调onNewIntent方法，否则同standard模式。  singleTask 先在系统中查找属性值taskAffinity等于它的taskAffinity属性值的Activity，如果不存在则在新任务栈中启动。如果当栈中存在">
+<meta name="description" content="Android中Activity是直接和用户接触的组件，通常理解为页面组件，Androud默认有一个管理Activity的栈，每启动一个Activity都会将这个Activity实例压入栈中，按返回键便会把这个实例从栈中移除，如果栈中最后一个Activity实例被移除则应用退出。通常为了达到灵活的控制效果，Android可以在AndroidManifest.xml配置不同的模式来处理待启动Acti">
+<meta name="keywords" content="系统组件,面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Activity启动模式">
 <meta property="og:url" content="http://yoursite.com/2018/01/04/Activity启动模式/index.html">
 <meta property="og:site_name" content="Chenjialong Blog">
-<meta property="og:description" content="launchModestandard 默认启动模式，每次启动都会生成一个新的实例  singleTop 如果调用者的栈中存在相同的Activity实例，并且在栈顶，则回调onNewIntent方法，否则同standard模式。  singleTask 先在系统中查找属性值taskAffinity等于它的taskAffinity属性值的Activity，如果不存在则在新任务栈中启动。如果当栈中存在">
+<meta property="og:description" content="Android中Activity是直接和用户接触的组件，通常理解为页面组件，Androud默认有一个管理Activity的栈，每启动一个Activity都会将这个Activity实例压入栈中，按返回键便会把这个实例从栈中移除，如果栈中最后一个Activity实例被移除则应用退出。通常为了达到灵活的控制效果，Android可以在AndroidManifest.xml配置不同的模式来处理待启动Acti">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-07T10:27:01.000Z">
+<meta property="og:updated_time" content="2018-01-09T15:16:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity启动模式">
-<meta name="twitter:description" content="launchModestandard 默认启动模式，每次启动都会生成一个新的实例  singleTop 如果调用者的栈中存在相同的Activity实例，并且在栈顶，则回调onNewIntent方法，否则同standard模式。  singleTask 先在系统中查找属性值taskAffinity等于它的taskAffinity属性值的Activity，如果不存在则在新任务栈中启动。如果当栈中存在">
+<meta name="twitter:description" content="Android中Activity是直接和用户接触的组件，通常理解为页面组件，Androud默认有一个管理Activity的栈，每启动一个Activity都会将这个Activity实例压入栈中，按返回键便会把这个实例从栈中移除，如果栈中最后一个Activity实例被移除则应用退出。通常为了达到灵活的控制效果，Android可以在AndroidManifest.xml配置不同的模式来处理待启动Acti">
 
 
 
@@ -312,6 +313,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -339,7 +362,7 @@
       
 
       
-        <p><br></p>
+        <p>Android中Activity是直接和用户接触的组件，通常理解为页面组件，Androud默认有一个管理Activity的栈，每启动一个Activity都会将这个Activity实例压入栈中，按返回键便会把这个实例从栈中移除，如果栈中最后一个Activity实例被移除则应用退出。通常为了达到灵活的控制效果，Android可以在AndroidManifest.xml配置不同的模式来处理待启动Activity实例和栈的关系，如多个栈以及重复启动Activiy的相应规则等。<br>AndroidManifest.xml可以配置4种模式standard、singleTop、singleTask、singleInstance，也可以在Intent中调用Intent.setFlags(int flags)方法动态设置启动模式，并且代码设置的模式优先级高于在AndroidManifest.xml配置的4种模式。<br><a id="more"></a></p>
 <h2 id="launchMode"><a href="#launchMode" class="headerlink" title="launchMode"></a>launchMode</h2><h3 id="standard"><a href="#standard" class="headerlink" title="standard"></a><strong>standard</strong></h3><blockquote>
 <p>默认启动模式，每次启动都会生成一个新的实例</p>
 </blockquote>
@@ -362,10 +385,17 @@
 <p>只能与#FLAG_ACTIVITY_NEW_TASK配合使用，启动时清空当前栈，新启动的Activity变成这个空栈的根Activity并将这个栈移动到最前面。</p>
 <p>Intent.FLAG_ACTIVITY_CLEAR_TASK的优先级最高，基本可以无视所有的配置，包括启动模式及Intent Flag，哪怕是singleInstance也会被finish并重建。</p>
 </blockquote>
-<h3 id="Intent-FLAG-ACTIVITY-CLEAR-TOP"><a href="#Intent-FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="Intent.FLAG_ACTIVITY_CLEAR_TOP"></a>Intent.<strong>FLAG_ACTIVITY_CLEAR_TOP</strong></h3><blockquote>
-<p>FLAG_ACTIVITY_CLEAR_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找</p>
-<p>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_SINGLE_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后回调onNewIntent方法。只会在当前启动目标Activity的栈中寻找<br><em>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK  如ActivityTarget所在的栈存在并找到ActivityTarget实例，则清除ActivityTarget上面所有Activity，把ActivityTarget栈移动栈顶，然后先finish自己再重建。
-</em>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP    如果当前启动栈的TopActivity不是ActivityTarget，则同#FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK ！！！<br>*FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP 如果当前启动栈的TopActivity是ActivityTarget，就直接回调topActivity的onNewIntent，无论topActivity是不是在目标Task中。 </p>
+<h3 id="Intent-FLAG-ACTIVITY-CLEAR-TOP"><a href="#Intent-FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="Intent.FLAG_ACTIVITY_CLEAR_TOP"></a>Intent.<strong>FLAG_ACTIVITY_CLEAR_TOP</strong></h3><h4 id="FLAG-ACTIVITY-CLEAR-TOP-如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找"><a href="#FLAG-ACTIVITY-CLEAR-TOP-如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找"></a>FLAG_ACTIVITY_CLEAR_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找</h4><blockquote>
+<p>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_SINGLE_TOP<br>如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后回调onNewIntent方法。只会在当前启动目标Activity的栈中寻找。</p>
+</blockquote>
+<h4 id="FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK"><a href="#FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK"></a>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK</h4><blockquote>
+<p>如ActivityTarget所在的栈存在并找到ActivityTarget实例，则清除ActivityTarget上面所有Activity，把ActivityTarget栈移动栈顶，然后先finish自己再重建。</p>
+</blockquote>
+<h4 id="FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK-FLAG-ACTIVITY-SINGLE-TOP"><a href="#FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK-FLAG-ACTIVITY-SINGLE-TOP" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP"></a>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP</h4><blockquote>
+<p>如果当前启动栈的TopActivity不是ActivityTarget，则同FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK 。</p>
+</blockquote>
+<h4 id="FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK-FLAG-ACTIVITY-SINGLE-TOP-1"><a href="#FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK-FLAG-ACTIVITY-SINGLE-TOP-1" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP"></a>FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP</h4><blockquote>
+<p>如果当前启动栈的TopActivity是ActivityTarget，就直接回调topActivity的onNewIntent，无论topActivity是不是在目标Task中。</p>
 </blockquote>
 <h3 id="Intent-FLAG-ACTIVITY-SINGLE-TOP"><a href="#Intent-FLAG-ACTIVITY-SINGLE-TOP" class="headerlink" title="Intent.FLAG_ACTIVITY_SINGLE_TOP"></a>Intent.<strong>FLAG_ACTIVITY_SINGLE_TOP</strong></h3><blockquote>
 <p>跟LaunchMode中的singleTop作用一样，在Task栈顶有的话，就不新建，栈顶没有的话，就新建，这里的Task可能是目标栈。</p>
@@ -442,6 +472,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统组件/" rel="tag"># 系统组件</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
       
 
       
@@ -544,7 +582,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -574,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#launchMode"><span class="nav-number">1.</span> <span class="nav-text">launchMode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#standard"><span class="nav-number">1.1.</span> <span class="nav-text">standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleTop"><span class="nav-number">1.2.</span> <span class="nav-text">singleTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleTask"><span class="nav-number">1.3.</span> <span class="nav-text">singleTask</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleInstance"><span class="nav-number">1.4.</span> <span class="nav-text">singleInstance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent：setFlags"><span class="nav-number">2.</span> <span class="nav-text">Intent：setFlags</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-NEW-TASK-比较关键"><span class="nav-number">2.1.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_NEW_TASK(比较关键)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-CLEAR-TASK"><span class="nav-number">2.2.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_CLEAR_TASK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-CLEAR-TOP"><span class="nav-number">2.3.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_CLEAR_TOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-SINGLE-TOP"><span class="nav-number">2.4.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_SINGLE_TOP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LaunchMode与StartActivityForResult-目前在不同的版本上有不同的表现"><span class="nav-number">3.</span> <span class="nav-text">LaunchMode与StartActivityForResult(目前在不同的版本上有不同的表现)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-0版本之前为什么无效："><span class="nav-number">3.1.</span> <span class="nav-text">5.0版本之前为什么无效：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-0版本以后系统做的处理："><span class="nav-number">3.2.</span> <span class="nav-text">5.0版本以后系统做的处理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非Activity启动的Activity"><span class="nav-number">4.</span> <span class="nav-text">非Activity启动的Activity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要的Flag："><span class="nav-number">5.</span> <span class="nav-text">主要的Flag：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#launchMode"><span class="nav-number">1.</span> <span class="nav-text">launchMode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#standard"><span class="nav-number">1.1.</span> <span class="nav-text">standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleTop"><span class="nav-number">1.2.</span> <span class="nav-text">singleTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleTask"><span class="nav-number">1.3.</span> <span class="nav-text">singleTask</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleInstance"><span class="nav-number">1.4.</span> <span class="nav-text">singleInstance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent：setFlags"><span class="nav-number">2.</span> <span class="nav-text">Intent：setFlags</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-NEW-TASK-比较关键"><span class="nav-number">2.1.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_NEW_TASK(比较关键)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-CLEAR-TASK"><span class="nav-number">2.2.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_CLEAR_TASK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-CLEAR-TOP"><span class="nav-number">2.3.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_CLEAR_TOP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-CLEAR-TOP-如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找"><span class="nav-number">2.3.1.</span> <span class="nav-text">FLAG_ACTIVITY_CLEAR_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK"><span class="nav-number">2.3.2.</span> <span class="nav-text">FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK-FLAG-ACTIVITY-SINGLE-TOP"><span class="nav-number">2.3.3.</span> <span class="nav-text">FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-CLEAR-TOP-FLAG-ACTIVITY-NEW-TASK-FLAG-ACTIVITY-SINGLE-TOP-1"><span class="nav-number">2.3.4.</span> <span class="nav-text">FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-FLAG-ACTIVITY-SINGLE-TOP"><span class="nav-number">2.4.</span> <span class="nav-text">Intent.FLAG_ACTIVITY_SINGLE_TOP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LaunchMode与StartActivityForResult-目前在不同的版本上有不同的表现"><span class="nav-number">3.</span> <span class="nav-text">LaunchMode与StartActivityForResult(目前在不同的版本上有不同的表现)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-0版本之前为什么无效："><span class="nav-number">3.1.</span> <span class="nav-text">5.0版本之前为什么无效：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-0版本以后系统做的处理："><span class="nav-number">3.2.</span> <span class="nav-text">5.0版本以后系统做的处理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非Activity启动的Activity"><span class="nav-number">4.</span> <span class="nav-text">非Activity启动的Activity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要的Flag："><span class="nav-number">5.</span> <span class="nav-text">主要的Flag：</span></a></li></ol></div>
             
 
           </div>
