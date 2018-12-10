@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="默认," />
+  <meta name="keywords" content="framework," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="默认">
+<meta name="description" content="Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的创建和生命周期回调、Activity的创">
+<meta name="keywords" content="framework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/01/07/hello-world/index.html">
+<meta property="og:title" content="Launcher点击图标启动Activity过程">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/Launcher点击图标启动Activity过程/index.html">
 <meta property="og:site_name" content="Chenjialong Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的创建和生命周期回调、Activity的创">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T14:55:33.000Z">
+<meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D">
+<meta property="og:updated_time" content="2018-12-10T05:32:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="Launcher点击图标启动Activity过程">
+<meta name="twitter:description" content="Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的创建和生命周期回调、Activity的创">
+<meta name="twitter:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/07/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/10/Launcher点击图标启动Activity过程/"/>
 
 
 
 
 
-  <title>Hello World | Chenjialong Blog</title>
+  <title>Launcher点击图标启动Activity过程 | Chenjialong Blog</title>
   
 
 
@@ -273,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/Launcher点击图标启动Activity过程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenjialong">
@@ -290,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Launcher点击图标启动Activity过程</h1>
         
 
         <div class="post-meta">
@@ -302,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-07T14:49:56+08:00">
-                2018年01月7日
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T13:31:05+08:00">
+                2018年12月10日
               </time>
             
 
@@ -325,8 +327,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/搭建博客/" itemprop="url" rel="index">
-                    <span itemprop="name">搭建博客</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -362,15 +364,106 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。<br>客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的<br>创建和生命周期回调、Activity的创建和生命周期的回调等等。<br><a id="more"></a></p>
+<h2 id="Launcher点击图标到App启动过程略缩图"><a href="#Launcher点击图标到App启动过程略缩图" class="headerlink" title="Launcher点击图标到App启动过程略缩图"></a>Launcher点击图标到App启动过程略缩图</h2><blockquote>
+<p>下面一张完整图片来概括整个过程(约900K)</p>
+</blockquote>
+<p><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&amp;OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&amp;Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D" alt="完成流程图"></p>
+<!-- 
+### **standard**
+
+>默认启动模式，每次启动都会生成一个新的实例
+
+### **singleTop**
+
+>如果调用者的栈中存在相同的Activity实例，并且在栈顶，则回调onNewIntent方法，否则同standard模式。
+
+### **singleTask**
+
+>先在系统中查找属性值taskAffinity等于它的taskAffinity属性值的Activity，如果不存在则在新任务栈中启动。
+如果当栈中存在相同的Activity实例，无论在什么位置，都会讲这个实例直接回到栈顶，并移除这个实例上面所有的Activity，然后回调onNewIntent方法。启动singleTask的Activity，可以继续启动其他Activity并放在当前栈（当再次启动这个Activity后，会清除这个Activity上面所有的Activity，并回调onNewIntent方法）
+
+### **singleInstance**
+>永远只存在一个实例，只在某一个栈中，该栈中仅只有该Activity。如不存在这个实例则创建这个实例，如在某个栈中存在这个实例则重用这个栈的这个实例，会回调onNewIntent方法。如果这个Activity的Intent有Intent.FLAG_ACTIVITY_CLEAR_TASK和Intent.FLAG_ACTIVITY_NEW_TASK则会销毁重建(理由见Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+</br>
+
+## Intent：setFlags
+    启动 Activity ，我们需要传递一个 Intent，完全可以通过设置 Intent.setFlags(int flags) 来设置启动的 Activity 的启动模式。
+    通过代码来设置 Activity 的启动模式的方式，优先级比清单文件设置更高。（ActivityStackSupervisor源码中if优先判断代码的flag）
+
+### Intent.**FLAG_ACTIVITY_NEW_TASK**(比较关键)
+
+>建立一个Task的概念（前提设置了taskAffinity属性），配合其他FLAG使用时会优先查找有相同taskAffinity值的栈！！！
+启动模式是singleTask及singleInstance在AMS中被预处理后，隐形的设置了Intent.FLAG_ACTIVITY_NEW_TASK，而启动模式是standard及singletTop的Activity不会被设置，除非显示的在Intent中设置。
+如果找不到目标Task自然会启动Task，如果目标task栈根Activity的Intent同新将要启动的Activity相同，就不启动新Activity，否则启动Activity。
+
+### Intent.**FLAG_ACTIVITY_CLEAR_TASK**
+
+>只能与#FLAG_ACTIVITY_NEW_TASK配合使用，启动时清空当前栈，新启动的Activity变成这个空栈的根Activity并将这个栈移动到最前面。
+>
+Intent.FLAG_ACTIVITY_CLEAR_TASK的优先级最高，基本可以无视所有的配置，包括启动模式及Intent Flag，哪怕是singleInstance也会被finish并重建。
+
+### Intent.**FLAG_ACTIVITY_CLEAR_TOP** 
+
+> FLAG_ACTIVITY_CLEAR_TOP  如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后先finish自己后再重建。只会在当前启动目标Activity的栈中寻找
+
+> FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_SINGLE_TOP
+如当前栈中存在ActivityTarget，则清除ActivityTarget上面所有Activity，然后回调onNewIntent方法。只会在当前启动目标Activity的栈中寻找。
+
+#### FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK
+>如ActivityTarget所在的栈存在并找到ActivityTarget实例，则清除ActivityTarget上面所有Activity，把ActivityTarget栈移动栈顶，然后先finish自己再重建。
+
+#### FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP
+>如果当前启动栈的TopActivity不是ActivityTarget，则同FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK 。
+
+#### FLAG_ACTIVITY_CLEAR_TOP+FLAG_ACTIVITY_NEW_TASK+FLAG_ACTIVITY_SINGLE_TOP
+>如果当前启动栈的TopActivity是ActivityTarget，就直接回调topActivity的onNewIntent，无论topActivity是不是在目标Task中。
+
+### Intent.**FLAG_ACTIVITY_SINGLE_TOP**
+>跟LaunchMode中的singleTop作用一样，在Task栈顶有的话，就不新建，栈顶没有的话，就新建，这里的Task可能是目标栈。
+
+</br>
+
+## **LaunchMode与StartActivityForResult**(目前在不同的版本上有不同的表现)
+
+### 5.0版本之前为什么无效：
+>startActivityForResult启动singleTask/singleInstance模式的Activity会马上回调onActivityResult()并给出了RESULT_CANCEL
+ActivityStackSupervisor类中的startActivityUncheckedLocked方法在5.0中进行了修改。5.0之前，当页面A启动页面B时，系统将首先检查Activity的launchMode，如果为A页面设置为SingleInstance或者B页面设置为singleTask或者singleInstance,则会在LaunchFlags中加入FLAG_ACTIVITY_NEW_TASK标志，而如果含有FLAG_ACTIVITY_NEW_TASK标志的话，onActivityResult将会立即接收到一个RESULT_CANCEL的信息
+
+### 5.0版本以后系统做的处理：
+>5.0之后这个方法做了修改，修改之后即便启动的页面设置launchMode为singleTask或singleInstance，onActivityResult依旧可以正常工作，也就是说无论设置哪种启动方式，StartActivityForResult和onActivityResult()这一组合都是有效的图示：
+
+
+## **非Activity启动的Activity**
+>启动时必须加上intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);因为Activity必须要存在于某个栈中，非Activity启动(如Application和Service)是没有栈的所以需要加上NewTask的Flag。  
+
+
+</br>
+
+## **主要的Flag**：
+
+* FLAG_ACTIVITY_CLEAR_TASK    
+    >只能与#FLAG_ACTIVITY_NEW_TASK配合使用，启动时清空当前栈，新启动的Activity变成这个空栈的跟Activity
+* FLAG_ACTIVITY_CLEAR_TOP    
+    >如果栈中存在相同的Activity，则把这个Activity上面的Activity都干掉。如果同时设置了FLAG_ACTIVITY_SINGLE_TOP ，则回调onNewIntent方法；否则先finish后create这个实例
+* FLAG_ACTIVITY_SINGLE_TOP
+    >如果设置，当这个Activity位于历史stack的顶端运行时，不再启动一个新的。
+* FLAG_ACTIVITY_NEW_TASK
+    >如果启动Activity添加了taskAffinity属性，则先查找是否存在和启动Activity相同taskAffinity的栈，如存在：则将其压入这个栈中，不存在：则创建一个新的taskAffinity的栈并压入其中。如果没有taskAffinity属性,则跟没有添加 FLAG_ACTIVITY_NEW_TASK是一样的效果
+* FLAG_ACTIVITY_REORDER_TO_FRONT
+    >创建并启动Activity并提到栈顶，如果栈中存在此Activity，则不创建Activity实例并把栈中的实例移动到栈顶
+* FLAG_ACTIVITY_NO_ANIMATION
+    >这个标志将阻止系统进入下一个Activity时应用Acitivity迁移动画
+* FLAG_ACTIVITY_NO_HISTORY
+    >Activity正常启动，只是不被压入栈中
+* FLAG_ACTIVITY_NO_USER_ACTION
+    >用来保证当前Activity暂停的动作是否由用户引发的。添加上这个Flag后在Activity执行onPause后不会回调onUserLeaveHint方法。如正常用户操作导致Activity的onPause，则会回调onUserLeaveHint；如系统行为闹钟电话等启动就应该添加这个Flag，这时暂停了的Activity不会回调onUserLeaveHint。
+* FLAG_ACTIVITY_TASK_ON_HOME
+    >需要和FLAG_ACTIVITY_NEW_TASK配合使用。添加这个Flag后，启动的Activity会把系统桌面Activity放在LauncherAct上面(单独的Task)，然后启动目标Activity(新Task)在最上面，如果按返回按键，会返回到桌面Activity！
+* FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+    >如果设置，新的Activity不会在最近启动的Activity的列表中保存。
+* 省略其他不重要的Flag -->
 
       
     </div>
@@ -388,7 +481,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/默认/" rel="tag"># 默认</a>
+            <a href="/tags/framework/" rel="tag"># framework</a>
           
         </div>
       
@@ -401,8 +494,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/07/感言/" rel="next" title="搭建个人博客">
-                <i class="fa fa-chevron-left"></i> 搭建个人博客
+              <a href="/2018/01/07/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -410,10 +503,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/10/Launcher点击图标启动Activity过程/" rel="prev" title="Launcher点击图标启动Activity过程">
-                Launcher点击图标启动Activity过程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -545,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Launcher点击图标到App启动过程略缩图"><span class="nav-number">1.</span> <span class="nav-text">Launcher点击图标到App启动过程略缩图</span></a></li></ol></div>
             
 
           </div>
