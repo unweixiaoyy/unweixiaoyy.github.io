@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="Chenjialong Blog">
 <meta property="og:description" content="Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的创建和生命周期回调、Activity的创">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D">
-<meta property="og:updated_time" content="2018-12-10T05:32:21.000Z">
+<meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app_50p.jpg?Expires=1544425973&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=0qr6KbCA2aKyJVpnxJpOtRrSn5o%3D">
+<meta property="og:updated_time" content="2018-12-10T06:18:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Launcher点击图标启动Activity过程">
 <meta name="twitter:description" content="Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的创建和生命周期回调、Activity的创">
-<meta name="twitter:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D">
+<meta name="twitter:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app_50p.jpg?Expires=1544425973&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=0qr6KbCA2aKyJVpnxJpOtRrSn5o%3D">
 
 
 
@@ -365,10 +365,12 @@
 
       
         <p>Launcher点击图标启动一个App(以微信App为例)，这个过程需要很多次IPC，Launcher进程和AMS、AMS和微信App。<br>客户端中有关Activity启动和生命周期回调实际由Instrumentation来完成，Instrumentation调用AMS本地代理BinderProxy向AMS通信，最终AMS搞定进程的创建、Application的<br>创建和生命周期回调、Activity的创建和生命周期的回调等等。<br><a id="more"></a></p>
-<h2 id="Launcher点击图标到App启动过程略缩图"><a href="#Launcher点击图标到App启动过程略缩图" class="headerlink" title="Launcher点击图标到App启动过程略缩图"></a>Launcher点击图标到App启动过程略缩图</h2><blockquote>
-<p>下面一张完整图片来概括整个过程(约900K)</p>
+<h2 id="Launcher点击图标到App启动过程略缩图"><a href="#Launcher点击图标到App启动过程略缩图" class="headerlink" title="Launcher点击图标到App启动过程略缩图"></a>Launcher点击图标到App启动过程略缩图</h2><!-- >最后来一张完整图片来概括整个过程(约900K,最好下载到本地打开)
+![完成流程图](http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D) -->
+<blockquote>
+<p>略缩图<br><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app_50p.jpg?Expires=1544425973&amp;OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&amp;Signature=0qr6KbCA2aKyJVpnxJpOtRrSn5o%3D" alt="完成流程略缩图"></p>
+<p>点击查看大图<br><a href="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&amp;OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&amp;Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D" target="_blank" rel="noopener">点击查看大图吧</a></p>
 </blockquote>
-<p><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg?Expires=1544422852&amp;OSSAccessKeyId=TMP.AQHYfy5kIgP29QH0FEdb0K1nOOzwk0B196-zEkVXoT0fDa-hYTLKwfMit7EZMC4CFQD_3-pjXnWo77TbzaSKN00lMnyUiwIVAMbEd6vZ81VS3KnGVPuGxtP5MxV7&amp;Signature=zsQvBEhAl8WZyGXpmNt0XhX1s0Q%3D" alt="完成流程图"></p>
 <!-- 
 ### **standard**
 
