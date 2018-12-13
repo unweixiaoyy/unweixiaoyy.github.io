@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/client_server_smr_binder.jpg">
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_ams_app_smr_in_binder.jpg">
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/AIDL_class_system.jpg">
-<meta property="og:updated_time" content="2018-12-13T07:16:42.000Z">
+<meta property="og:updated_time" content="2018-12-13T07:18:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binder简单归纳总结">
 <meta name="twitter:description" content="我对Binder的理解是：解决Android平台IPC的一种方案。它的优点是传输性能较好、相对稳定、架构清晰、安全性好、使用简单。要理解Binder，从它的架构方面入手比较轻松一点。">
@@ -385,17 +385,17 @@
 <p>通常两个进程之间的内存是不共享的，每个进程都有自己的进程空间。每个进程的进程空间划分为用户空间和内核空间，用户空间不共享数据，内核空间进程间共享数据。</p>
 <ul>
 <li><p>传统IPC<br>  进程A用户空间-&gt;内核空间-&gt;进程B用户空间。进程A用户空间和内核空间均开辟一块内存缓冲区，把数据拷贝到内核空间缓冲区，然后进程B用户空间再开辟一块内存缓冲区，最后内核空间缓冲区把数据拷贝到进程B用户空间缓冲区，这样拷贝了2次数据完成一次传输。</p>
-<p>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_linux.jpg" alt="点击查看"></p>
+<p>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_linux.jpg" alt="ipc_linux"></p>
 </li>
 <li><p>Binder<br>  Binder使用了内存映射技术简化了IPC过程中的数据拷贝次数。首先Binder驱动通过mmap()函数开辟一块物理内存缓冲区，然后将内核空间和接收进程的用户空间均映射到这块内存上，然后发送进程把用户空间的数据拷贝到内核空间，由于内核空间和接收进程用户空间有了内存映射，接收进程用户空间便拿到了发送进程发来的数据，这样只拷贝一次数据便完成了IPC。进程A用户空间-&gt;内核空间(内存映射)==进程B用户空间(内存映射)。</p>
-<p>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_binder.jpg" alt="点击查看"></p>
+<p>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_binder.jpg" alt="ipc_binder"></p>
 </li>
 </ul>
 <blockquote>
 <h5 id="Binder的C-S模式"><a href="#Binder的C-S模式" class="headerlink" title="Binder的C/S模式"></a>Binder的C/S模式</h5></blockquote>
 <p>Binder架构中，客户端和服务端我通常这样理解：在一次通信中，发起方是客户端，接收方是服务端。例如进程A和B，A向B发起通信，A是客户端B是服务端；同样的B向A发起通信，则B是客户端A是服务端。</p>
 <ul>
-<li><strong>Android中获取某个服务</strong><br>SMr指ServiceManager，很多系统服务如AMS、PMS和WMS等均通过SMr获取，路径<code>frameworks/base/core/java/android/os/ServiceManager.java</code><br><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/client_server_smr_binder.jpg" alt="点击查看"><ul>
+<li><strong>Android中获取某个服务</strong><br>SMr指ServiceManager，很多系统服务如AMS、PMS和WMS等均通过SMr获取，路径<code>frameworks/base/core/java/android/os/ServiceManager.java</code><br><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/client_server_smr_binder.jpg" alt="client_server_smr_binder"><ul>
 <li>Server进程要把自己注册到SMr进程中。注册过程中Server是客户端，SMr是服务端</li>
 <li>Client进程向SMr通信，SMr返回Client准备获取的Server的远程代理对象。获取服务过程中Client是客户端，SMr是服务端</li>
 <li>Client进程通过Binder驱动与Server进程通信。它们通信的过程中Client是客户端，Server是服务端</li>
@@ -404,7 +404,7 @@
 </li>
 </ul>
 <ul>
-<li><p><strong>Launcher点击图标启动App</strong><br><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_ams_app_smr_in_binder.jpg" alt="点击查看"></p>
+<li><p><strong>Launcher点击图标启动App</strong><br><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_ams_app_smr_in_binder.jpg" alt="launcher_ams_app_smr_in_binder"></p>
 <ul>
 <li>AMS把自己注册到SMr进程中。注册过程中AMS是客户端，SMr是服务端</li>
 <li>Launcher通过SMr获取AMS的IActivityManager远程Binder引用。Launcher是客户端，SMr是服务端</li>
@@ -426,7 +426,7 @@
 </ul>
 <h4 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h4><blockquote>
 <h6 id="AIDL结构图"><a href="#AIDL结构图" class="headerlink" title="AIDL结构图"></a>AIDL结构图</h6></blockquote>
-<p><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/AIDL_class_system.jpg" alt="点击查看"></p>
+<p><img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/AIDL_class_system.jpg" alt="AIDL_class_system"></p>
 <blockquote>
 <h6 id="AIDL代码"><a href="#AIDL代码" class="headerlink" title="AIDL代码"></a>AIDL代码</h6></blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">package com.jialong.test.aidl;</span><br><span class="line"></span><br><span class="line">interface IMyAidlInterface &#123;</span><br><span class="line">    int sum(int a, int b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
