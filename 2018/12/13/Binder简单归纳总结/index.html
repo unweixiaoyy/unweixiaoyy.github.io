@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/client_server_smr_binder.jpg">
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_ams_app_smr_in_binder.jpg">
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/AIDL_class_system.jpg">
-<meta property="og:updated_time" content="2018-12-13T06:27:28.000Z">
+<meta property="og:updated_time" content="2018-12-13T06:34:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binder简单归纳总结">
 <meta name="twitter:description" content="我对Binder的理解是：解决Android平台IPC的一种方案。它的优点是传输性能较好、相对稳定、架构清晰、安全性好、使用简单。要理解Binder，从它的架构方面入手比较轻松一点。">
@@ -381,9 +381,11 @@
 <h5 id="Binder通信原理"><a href="#Binder通信原理" class="headerlink" title="Binder通信原理"></a>Binder通信原理</h5></blockquote>
 <p>通常两个进程之间的内存是不共享的，每个进程都有自己的进程空间。每个进程的进程空间划分为用户空间和内核空间，用户空间不共享数据，内核空间进程间共享数据。</p>
 <ul>
-<li><p>传统IPC<br>  进程A用户空间-&gt;内核空间-&gt;进程B用户空间。进程A用户空间和内核空间均开辟一块内存缓冲区，把数据拷贝到内核空间缓冲区，然后进程B用户空间再开辟一块内存缓冲区，最后内核空间缓冲区把数据拷贝到进程B用户空间缓冲区，这样拷贝了2次数据完成一次传输。<br>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_linux.jpg" alt="点击查看"></p>
+<li><p>传统IPC<br>  进程A用户空间-&gt;内核空间-&gt;进程B用户空间。进程A用户空间和内核空间均开辟一块内存缓冲区，把数据拷贝到内核空间缓冲区，然后进程B用户空间再开辟一块内存缓冲区，最后内核空间缓冲区把数据拷贝到进程B用户空间缓冲区，这样拷贝了2次数据完成一次传输。</p>
+<p>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_linux.jpg" alt="点击查看"></p>
 </li>
-<li><p>Binder<br>  Binder使用了内存映射技术简化了IPC过程中的数据拷贝次数。首先Binder驱动通过mmap()函数开辟一块物理内存缓冲区，然后将内核空间和接收进程的用户空间均映射到这块内存上，然后发送进程把用户空间的数据拷贝到内核空间，由于内核空间和接收进程用户空间有了内存映射，接收进程用户空间便拿到了发送进程发来的数据，这样只拷贝一次数据便完成了IPC。进程A用户空间-&gt;内核空间(内存映射)==进程B用户空间(内存映射)。<br>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_binder.jpg" alt="点击查看"></p>
+<li><p>Binder<br>  Binder使用了内存映射技术简化了IPC过程中的数据拷贝次数。首先Binder驱动通过mmap()函数开辟一块物理内存缓冲区，然后将内核空间和接收进程的用户空间均映射到这块内存上，然后发送进程把用户空间的数据拷贝到内核空间，由于内核空间和接收进程用户空间有了内存映射，接收进程用户空间便拿到了发送进程发来的数据，这样只拷贝一次数据便完成了IPC。进程A用户空间-&gt;内核空间(内存映射)==进程B用户空间(内存映射)。</p>
+<p>  <img src="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ipc_binder.jpg" alt="点击查看"></p>
 </li>
 </ul>
 <blockquote>
