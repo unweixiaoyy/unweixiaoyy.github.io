@@ -364,8 +364,8 @@
 
       
         
-          <p>什么是Token？<br>Activity中有一个变量mToken，它是一个Binder，是ActivityRecord静态内部类Token，继承于IApplicationToken.Stub，字面上理解它是一个具有令牌功能的Binder。这个Binder是AMS为Activity创建的一个唯一标识，AMS进程管理App进程的Activity的生命周期，所以用可以跨进程的Binder来标识Activity最合适不过。</p>
-<p>Token创建？<br>AMS在创建启动Activity之前创建了ActivityRecord，ActivityRecord包含了待创建Activity所有的信息，并在构造函数中创建了Token。</p>
+          <p>什么是Token？<br>Token是ActivityRecord静态内部类，继承于IApplicationToken.Stub，是AMS为了客户端新启动的Activity所创建，字面上理解它是具有代表Activity令牌的一个Binder。<br>这个Binder是AMS为Activity创建的一个唯一标识，AMS进程管理App进程的Activity的生命周期，所以用可以跨进程的Binder来标识Activity最合适不过。</p>
+<p>Token创建？<br>AMS在创建启动Activity之前创建了ActivityRecord，ActivityRecord包含了待创建Activity所有的信息，并在构造函数中创建了Token，最终Activity创建好之后会得到它在客户端的本地Binder代理。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/12/20/Activity中的mToken/#more" rel="contents">
