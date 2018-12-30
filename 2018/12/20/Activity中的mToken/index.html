@@ -88,7 +88,7 @@
 <meta property="og:description" content="什么是Token？Token是ActivityRecord静态内部类，继承于IApplicationToken.Stub，是AMS为了客户端新启动的Activity所创建，字面上理解它是具有代表Activity令牌的一个Binder。这个Binder是AMS为Activity创建的一个唯一标识，AMS进程管理App进程的Activity的生命周期，所以用可以跨进程的Binder来标识Activit">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ActiRecord_Token2DisplayContent_mTokenMap.jpg">
-<meta property="og:updated_time" content="2018-12-30T13:28:01.000Z">
+<meta property="og:updated_time" content="2018-12-30T13:32:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity中的mToken">
 <meta name="twitter:description" content="什么是Token？Token是ActivityRecord静态内部类，继承于IApplicationToken.Stub，是AMS为了客户端新启动的Activity所创建，字面上理解它是具有代表Activity令牌的一个Binder。这个Binder是AMS为Activity创建的一个唯一标识，AMS进程管理App进程的Activity的生命周期，所以用可以跨进程的Binder来标识Activit">
@@ -367,7 +367,7 @@
         <p>什么是Token？<br>Token是ActivityRecord静态内部类，继承于IApplicationToken.Stub，是AMS为了客户端新启动的Activity所创建，字面上理解它是具有代表Activity令牌的一个Binder。<br>这个Binder是AMS为Activity创建的一个唯一标识，AMS进程管理App进程的Activity的生命周期，所以用可以跨进程的Binder来标识Activity最合适不过。</p>
 <p>Token创建？<br>AMS在创建启动Activity之前创建了ActivityRecord，ActivityRecord包含了待创建Activity所有的信息，并在构造函数中创建了Token，最终Activity创建好之后会得到它在客户端的本地Binder代理。</p>
 <a id="more"></a>
-<p>Token如何从App进程的Activity传递到WMS？Token对于WMS的作用？<br>Activity通过PhoneWindow把Token放到DecorView的WindowManager.LayoutParams中。然后App进程向WMS发起IPC，WMS拿到Token保存到WindowState，最终存储到WMS的<code>mWindowMap</code>中。<br>Activity在创建Token后，在ActivityStarter.startActivityLocked()方法中创建WindowToken<a href="Token添加到DisplayContent的mTokenMap过程。">^1</a>，然后以Token和WindowToken为键值存储在DisplayContent的<code>mTokenMap</code>中；当WMS调用addWindow添加Window时候，会使用Activity传过来的Token去<code>mTokenMap</code>查找，来验证Token的合法性。</p>
+<p>Token如何从App进程的Activity传递到WMS？Token对于WMS的作用？<br>Activity通过PhoneWindow把Token放到DecorView的WindowManager.LayoutParams中。然后App进程向WMS发起IPC，WMS拿到Token保存到WindowState，最终存储到WMS的<code>mWindowMap</code>中。<br>Activity在创建Token后，在ActivityStarter.startActivityLocked()方法中创建WindowToken<a href="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/ActiRecord_Token2DisplayContent_mTokenMap.jpg" target="_blank" rel="noopener">(点击查看)</a>，然后以Token和WindowToken为键值存储在DisplayContent的<code>mTokenMap</code>中；当WMS调用addWindow添加Window时候，会使用Activity传过来的Token去<code>mTokenMap</code>查找，来验证Token的合法性。</p>
 <blockquote>
 <h5 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h5></blockquote>
 <p>Activity:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> IBinder mToken;</span><br></pre></td></tr></table></figure></p>
