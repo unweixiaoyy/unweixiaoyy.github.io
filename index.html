@@ -510,7 +510,7 @@
 
       
         
-          <p>以Android 8.0版本为基础，以Launcher点击图标启动一个App来分析比较，这个过程需要很多次IPC，Launcher和AMS、AMS和App。<br>以IPC角度，启动流程大致为：<br>Launcher与AMS进行IPC，通知AMS启动App；<br>AMS做启动Activity之前的准备工作，Intent信息、LauncherMode、ActivityStack等完成后，AMS与Launcher进行IPC，通知Launcher进入后台；<br>AMS检测目标Activity所在App进程是否存在，不存在则通知Zygote创建新进程；<br>Zygote创建新进程，在新进程中反射调用ActivityThread.main方法；<br>App进程绑定到AMS，然后AMS首先通知App创建Application并调用其onCreate，再通知App启动Activity；<br>App收到AMS消息，开始创建Activity，并回调Activity相关生命周期。<br>
+          <p>以Android 8.0版本为基础，以Launcher点击图标启动一个App来分析比较，这个过程需要很多次IPC，Launcher和AMS、AMS和App。<br>从IPC角度分析，启动流程大致为：<br>Launcher与AMS进行IPC，通知AMS启动App；<br>AMS做启动Activity之前的准备工作，Intent信息、LauncherMode、ActivityStack等完成后，AMS与Launcher进行IPC，通知Launcher进入后台；<br>AMS检测目标Activity所在App进程是否存在，不存在则通知Zygote创建新进程；<br>Zygote创建新进程，在新进程中反射调用ActivityThread.main方法；<br>App进程绑定到AMS，然后AMS首先通知App创建Application并调用其onCreate，再通知App启动Activity；<br>App收到AMS消息，开始创建Activity，并回调Activity相关生命周期。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/01/02/启动Activity过程/#more" rel="contents">
