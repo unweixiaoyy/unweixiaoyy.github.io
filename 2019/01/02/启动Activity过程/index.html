@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Chenjialong Blog">
 <meta property="og:description" content="以Android 8.0版本为基础，以Launcher点击图标启动一个App来分析比较，这个过程需要很多次IPC，Launcher和AMS、AMS和App。从IPC角度分析，启动流程大致为：  Launcher与AMS进行IPC，通知AMS启动App； AMS做启动Activity之前的准备工作，Intent信息、LauncherMode、ActivityStack等完成后，AMS与Launche">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-22T06:57:07.000Z">
+<meta property="og:updated_time" content="2019-02-22T06:59:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="启动Activity过程">
 <meta name="twitter:description" content="以Android 8.0版本为基础，以Launcher点击图标启动一个App来分析比较，这个过程需要很多次IPC，Launcher和AMS、AMS和App。从IPC角度分析，启动流程大致为：  Launcher与AMS进行IPC，通知AMS启动App； AMS做启动Activity之前的准备工作，Intent信息、LauncherMode、ActivityStack等完成后，AMS与Launche">
@@ -517,7 +517,7 @@
 <li>是Zygote进程创建了SystemServer进程，见<code>ZygoteInit.main()</code>中执行的<code>forkSystemServer()</code>方法。</li>
 <li>以后再补充。。。</li>
 </ul>
-<p>最后来一张完整图片来概括整个过程：<br><a href="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app_50p.jpg" target="_blank" rel="noopener"><strong>(点击查看大图)</strong></a></p>
+<p>最后来一张完整图片来概括整个过程：<br><a href="http://chenjialong.oss-cn-beijing.aliyuncs.com/jialong/2019/launcher_to_app.jpg" target="_blank" rel="noopener"><strong>(点击查看大图)</strong></a></p>
 
       
     </div>
