@@ -514,10 +514,10 @@
 <ol>
 <li>Launcher与AMS进行IPC，通知AMS启动App；</li>
 <li>AMS做启动Activity之前的准备工作，Intent信息、LauncherMode、ActivityStack等完成后，AMS与Launcher进行IPC，通知Launcher进入后台；</li>
-<li>AMS检测目标Activity所在App进程是否存在，不存在则通知Zygote创建新进程；</li>
-<li>Zygote创建新进程，在新进程中反射调用ActivityThread.main方法；</li>
-<li>App进程绑定到AMS，然后AMS首先通知App创建Application并调用其onCreate，再通知App启动Activity；</li>
-<li>App收到AMS消息，开始创建Activity，并回调Activity相关生命周期。
+<li>AMS检测目标Activity所在App进程是否存在，通知Zygote进程fork新进程；</li>
+<li>新进程入口处<code>ActivityThread.main()</code>；</li>
+<li>AMS通知App创建Application；</li>
+<li>AMS通知App创建Activity并回调相关生命周期
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/01/02/启动Activity过程/#more" rel="contents">
